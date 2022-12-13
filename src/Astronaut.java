@@ -22,7 +22,6 @@ public class Astronaut {
     // Constructor Definition
     // A constructor builds the object when called and sets variable values.
 
-
     //This is a SECOND constructor that takes 3 parameters.  This allows us to specify the hero's name and position when we build it.
     // if you put in a String, an int and an int the program will use this constructor instead of the one above.
     public Astronaut(int pXpos, int pYpos, int pDx, int pDy) {
@@ -41,6 +40,34 @@ public class Astronaut {
         xpos = xpos + dx;
         ypos = ypos + dy;
  
+    }
+
+    public void wrap() {
+        if (xpos > 1000) {
+            xpos = 0;
+        }
+        if (ypos > 800) {
+            ypos = 0;
+        }
+        xpos = xpos + dx;
+        ypos = ypos + dy;
+    }
+
+    public void bounce() {
+        if (xpos > 940) {
+            dx = -dx;
+        }
+        if (ypos > 640) {
+            dy = -dy;
+        }
+        if (xpos < 0) {
+            dx = -dx;
+        }
+        if (ypos < 0) {
+            dy = -dy;
+        }
+        xpos = xpos + dx;
+        ypos = ypos + dy;
     }
 }
 
