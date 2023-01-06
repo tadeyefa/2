@@ -40,11 +40,14 @@ public class BasicGameApp implements Runnable {
 	public BufferStrategy bufferStrategy;
 	public Image astroPic;
 	public Image astro2Pic;
+	public Image basketballPic;
+	public Image background;
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
 	private Astronaut astro;
 	private Astronaut astro2;
+	private Astronaut basketball;
 
 
    // Main method definition
@@ -67,8 +70,11 @@ public class BasicGameApp implements Runnable {
       //create (construct) the objects needed for the game and load up 
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
 		astro2Pic = Toolkit.getDefaultToolkit().getImage("astronaut.png");
+		basketballPic = Toolkit.getDefaultToolkit().getImage("basketball.jpg");
+		background = Toolkit.getDefaultToolkit().getImage("joel_embiid.jpeg");
 		astro = new Astronaut(10,100, 3, 2);
 		astro2 = new Astronaut(50, 50, 2, 3);
+		basketball = new Astronaut(25, 25, 3,3);
 
 	}// BasicGameApp()
 
@@ -97,6 +103,7 @@ public class BasicGameApp implements Runnable {
       //calls the move( ) code in the objects
 		astro.bounce();
 		astro2.bounce();
+		basketball.bounce();
 
 	}
 	
@@ -147,9 +154,14 @@ public class BasicGameApp implements Runnable {
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
       //draw the image of the astronaut
+		g.drawImage(background, 0, 0, WIDTH,HEIGHT, null);
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
 		g.drawImage(astro2Pic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+		g.drawImage(basketballPic, basketball.xpos, basketball.ypos, basketball.width, basketball.height, null);
 
+		g.draw(new Rectangle(astro.xpos, astro.ypos, astro.width, astro.height));
+		g.draw(new Rectangle(astro2.xpos, astro2.ypos, astro2.width, astro2.height));
+		g.draw(new Rectangle(basketball.xpos, basketball.ypos, basketball.width, basketball.height));
 		g.dispose();
 
 		bufferStrategy.show();
