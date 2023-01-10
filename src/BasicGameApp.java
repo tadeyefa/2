@@ -72,8 +72,8 @@ public class BasicGameApp implements Runnable {
 		astro2Pic = Toolkit.getDefaultToolkit().getImage("astronaut.png");
 		basketballPic = Toolkit.getDefaultToolkit().getImage("basketball.jpg");
 		background = Toolkit.getDefaultToolkit().getImage("joel_embiid.jpeg");
-		astro = new Astronaut(10,100, 3, 2);
-		astro2 = new Astronaut(50, 50, 2, 3);
+		astro = new Astronaut(50,100, 4, 3);
+		astro2 = new Astronaut(150, 50, 3, 1);
 		basketball = new Astronaut(25, 25, 3,3);
 
 	}// BasicGameApp()
@@ -102,12 +102,43 @@ public class BasicGameApp implements Runnable {
 		if(astro.rec.intersects(astro2.rec))
 		{
 			System.out.println("crash");
+			astro.dx = -astro.dx;
+			astro.dy = -astro.dy;
+			astro2.dx = -astro2.dx;
+			astro2.dy = -astro2.dy;
 		}
+		if(astro.rec.intersects(basketball.rec))
+		{
+			astro.dx = -astro.dx;
+			astro.dy = -astro.dy;
+			basketball.dx = -basketball.dx;
+			basketball.dy = -basketball.dy;
+		}
+		if(astro2.rec.intersects(basketball.rec))
+		{
+			astro2.dx = -astro2.dx;
+			astro2.dy = -astro2.dy;
+			basketball.dx = -basketball.dx;
+			basketball.dy = -basketball.dy;
+		}
+	}
 
+	public void increase() {
+		if (astro.rec.intersects(basketball.rec))
+		{
+			basketball.width = 2*basketball.width;
+			basketball.height = 2*basketball.height;
+		}
+		if (astro2.rec.intersects(basketball.rec))
+		{
+			basketball.width = 2*basketball.width;
+			basketball.height = 2*basketball.height;
+		}
 	}
 	public void moveThings()
 	{
       //calls the move( ) code in the objects
+		increase();
 		crash();
 		astro.bounce();
 		astro2.bounce();
