@@ -97,10 +97,18 @@ public class BasicGameApp implements Runnable {
 		}
 	}
 
+	public void crash()
+	{
+		if(astro.rec.intersects(astro2.rec))
+		{
+			System.out.println("crash");
+		}
 
+	}
 	public void moveThings()
 	{
       //calls the move( ) code in the objects
+		crash();
 		astro.bounce();
 		astro2.bounce();
 		basketball.bounce();
