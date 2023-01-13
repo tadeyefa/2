@@ -106,6 +106,7 @@ public class BasicGameApp implements Runnable {
 			astro.dy = -astro.dy;
 			astro2.dx = -astro2.dx;
 			astro2.dy = -astro2.dy;
+			astro.isAlive = false;
 		}
 		if(astro.rec.intersects(basketball.rec))
 		{
@@ -135,9 +136,25 @@ public class BasicGameApp implements Runnable {
 			basketball.height = 2*basketball.height;
 		}
 	}
+
+//	public void disappear() {
+//		if (astro.rec.intersects(basketball.rec))
+//		{
+//			astro.isAlive = false;
+//		}
+//		if (basketball.rec.intersects(astro2.rec))
+//		{
+//			basketball.isAlive = false;
+//		}
+//		if (astro.rec.intersects(astro2.rec))
+//		{
+//			astro2.isAlive = false;
+//		}
+//	}
 	public void moveThings()
 	{
       //calls the move( ) code in the objects
+//		disappear();
 		increase();
 		crash();
 		astro.bounce();
@@ -194,11 +211,14 @@ public class BasicGameApp implements Runnable {
 
       //draw the image of the astronaut
 		g.drawImage(background, 0, 0, WIDTH,HEIGHT, null);
-		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
+		if(astro.isAlive == true) {
+			g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
+		}
 		g.drawImage(astro2Pic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
 		g.drawImage(basketballPic, basketball.xpos, basketball.ypos, basketball.width, basketball.height, null);
-
-		g.draw(new Rectangle(astro.xpos, astro.ypos, astro.width, astro.height));
+		if(astro.isAlive == true) {
+			g.draw(new Rectangle(astro.xpos, astro.ypos, astro.width, astro.height));
+		}
 		g.draw(new Rectangle(astro2.xpos, astro2.ypos, astro2.width, astro2.height));
 		g.draw(new Rectangle(basketball.xpos, basketball.ypos, basketball.width, basketball.height));
 		g.dispose();
